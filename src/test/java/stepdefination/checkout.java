@@ -37,7 +37,7 @@ public class checkout extends BaseClass {
 
         }
         catch(Exception e) {
-            System.out.println("Something went wrong.");
+            System.out.println("Something went wrong");
         }
 
     }

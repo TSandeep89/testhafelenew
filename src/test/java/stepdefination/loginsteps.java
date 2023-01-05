@@ -1,6 +1,7 @@
 package stepdefination;
 
 import PageObjects.BaseClass;
+import Utility.MyUtility;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,22 +12,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 //import org.testng.Assert;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class loginsteps extends BaseClass {
 
-    public loginsteps() throws InterruptedException {
-        BaseClass bst = new BaseClass();
-        bst.setup();
-    }
+//    public loginsteps() throws InterruptedException, IOException {
+//        BaseClass bst = new BaseClass();
+//        bst.setup();
+//    }
 
 //    WebDriver driver;
   @Given("^I launch chrome browser$")
    public void i_launch_chrome_browser() {
-//        // Write code here that turns the phrase above into concrete actions
-//        System.setProperty("webdriver.chrome.driver", "C://Users//tsandeep//Desktop//chromedriver_win32//chromedriver.exe");
-//        driver = new ChromeDriver();
-//
+        // Write code here that turns the phrase above into concrete actions
+        System.setProperty("webdriver.chrome.driver", "C://Users//tsandeep//Desktop//chromedriver_win32//chromedriver.exe");
+        driver = new ChromeDriver();
+
    }
 
     @When("User opens URL {string}")
@@ -56,14 +58,29 @@ public class loginsteps extends BaseClass {
     public void user_clicks_on_register_button() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
         //Thread.sleep(1000);
-        driver.findElement(By.linkText("Anmelden")).click();
+        try {
+            Thread.sleep(5000);
+            driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+        } catch (Exception e) {
+            System.out.println("Button not clicked");
+        }
+
+        MyUtility utils = new MyUtility(driver);
+        utils.acceptCookie();
+        Thread.sleep(2000);
+        driver.findElement(By.linkText("Anmelden / Registrieren")).click();
     }
 
-    @Then("User enters Customer as {int} and Password as HQ3-")
-    public void user_enters_customer_as_and_password_as_hq3(Integer int1) {
+    @Then("^User enters Customer as (.*) and (.*)$")
+    public void user_enters_customer_as_and_password_as_hq3(String username, String password) {
         // Write code here that turns the phrase above into concrete actions
-            driver.findElement(By.id("ShopLoginForm_Login_headerItemLogin")).sendKeys("2622299");
-            driver.findElement(By.id("ShopLoginForm_Password_headerItemLogin")).sendKeys("HQ3-");
+//            driver.findElement(By.id("ShopLoginForm_Login_headerItemLogin")).sendKeys("2622299");
+//            driver.findElement(By.id("ShopLoginForm_Password_headerItemLogin")).sendKeys("HQ3-");
+
+        driver.findElement(By.id("ShopLoginForm_Login_headerItemLogin")).sendKeys(username);
+        driver.findElement(By.id("ShopLoginForm_Password_headerItemLogin")).sendKeys(password);
+
+
 
     }
 
@@ -71,7 +88,7 @@ public class loginsteps extends BaseClass {
     public void click_on_register_submit_button() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
         //Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(By.xpath("//button[contains(text(),'Anmelden')]")).click();
         Thread.sleep(1000);
 
     }
@@ -91,7 +108,7 @@ public class loginsteps extends BaseClass {
     public void close_the_browser() {
         // Write code here that turns the phrase above into concrete actions
 
-      //  driver.quit();
+     driver.quit();
     }
 
 }

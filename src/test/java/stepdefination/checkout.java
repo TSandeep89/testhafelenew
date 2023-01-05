@@ -8,6 +8,10 @@ import org.jsoup.Connection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.ITestResult;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
 import java.util.List;
 
 public class checkout extends BaseClass {
@@ -15,7 +19,7 @@ public class checkout extends BaseClass {
    // private MyUtility myUtility;
 
 
-    public checkout() throws InterruptedException {
+    public checkout() throws InterruptedException, IOException {
         BaseClass bscs = new BaseClass();
         bscs.setup();
         driver = bscs.driver;
@@ -25,15 +29,18 @@ public class checkout extends BaseClass {
     }
     @When("User enters value a in search box as {int}.")
     public void user_enters_value_a_in_search_box_as(Integer int1) throws InterruptedException {
+
+
         try{
             MyUtility utility = new MyUtility(driver);
             utility.acceptCookie();
             //driver = new ChromeDriver();
             // Write code here that turns the phrase above into concrete actions
 
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             //driver.findElement(By.xpath(".//input[@name='SearchTerm']")).sendKeys("26226533");
             driver.findElement(By.id("inputSearchTerm")).sendKeys("26226533");
+
 
         }
         catch(Exception e) {
@@ -41,10 +48,15 @@ public class checkout extends BaseClass {
         }
 
     }
-
+    @Test(enabled = true)
     @Then("USer clicks on a search button.")
-    public void user_clicks_on_a_search_button() throws InterruptedException {
+    public void user_clicks_on_a_search_button() throws InterruptedException, IOException {
         driver.findElement(By.xpath("//button[@value='Search']")).click();
+        MyUtility utility = new MyUtility(driver);
+        utility.Screenshot();
+
+//        ITestResult result = null;
+//        utility.screenShot(result);
         Thread.sleep(6000);
     }
 

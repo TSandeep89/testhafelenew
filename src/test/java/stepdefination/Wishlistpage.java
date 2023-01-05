@@ -5,12 +5,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Wishlistpage extends BaseClass {
     MyUtility mute;
-    public Wishlistpage() throws InterruptedException {
+    public Wishlistpage() throws InterruptedException, IOException {
         BaseClass bsc = new BaseClass();
         bsc.setup();
         driver = bsc.driver;
@@ -48,6 +50,7 @@ public class Wishlistpage extends BaseClass {
         Thread.sleep(2000);
         //ws.whishlistitems();
         //3qmute.whishlistitems();
+
         driver.findElement(By.xpath("//input[@value='Neuer Merkzettel']")).sendKeys("testnewlist");
     }
 
@@ -55,6 +58,7 @@ public class Wishlistpage extends BaseClass {
     public void user_clicks_on_Add_article_to_wishlist_button() {
         // Write code here that turns the phrase above into concrete actions
         driver.findElement(By.xpath("//button[@name='AddWishlistItem']")).click();
+
     }
 
 }

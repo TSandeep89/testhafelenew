@@ -8,12 +8,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.IOException;
+
 
 public class ArticletoCartPage extends BaseClass {
     //WebDriver driver1;
    // WebElement AddtoCartpopup = driver.findElement(By.id("notificationGoToCartLink_new"));
 
-    public ArticletoCartPage() throws InterruptedException {
+    public ArticletoCartPage() throws InterruptedException, IOException {
         //super();
         //ArticletoCartPage articletoCartPage= new ArticletoCartPage();
 

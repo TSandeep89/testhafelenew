@@ -16,15 +16,25 @@ package runnerfile;
 //public class testrunner {
 //}
 
+//import org.junit.runner.RunWith;
+//import io.cucumber.junit.Cucumber;
+//import io.cucumber.junit.CucumberOptions;
+
+
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/java/feature",
+@CucumberOptions(features = "C:/testhafele/src/test/java/feature/checkout.feature",
         monochrome = true,
         // plugin = {"json:target/cucumber-report/runwebat/cucumber.json",
         // "rerun:target/cucumber-report/runwebat/rerun.txt"},
-        glue = {"stepdefinations"}, dryRun = false, strict = true)
-public class testrunner {
+        glue = {"stepdefination"},
+        dryRun = true,
+       plugin = {"pretty", "html:target/test-output"})
+       // plugin = {"pretty", "json:target/cucumber.json"})
+
+    public class testrunner {
 }

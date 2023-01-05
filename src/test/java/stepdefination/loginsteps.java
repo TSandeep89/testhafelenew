@@ -48,9 +48,7 @@ public class loginsteps extends BaseClass {
 
         //driver.findElement(By.linkText("Hier bleiben.")).click();
         driver.findElement(By.xpath("(//*[@type=\"button\"])[13]")).click();
-//        Alert alert = driver.switchTo().alert();
-//        System.out.println(alert.getText());
-//        alert.accept();
+
     }
 
 
@@ -74,13 +72,9 @@ public class loginsteps extends BaseClass {
     @Then("^User enters Customer as (.*) and (.*)$")
     public void user_enters_customer_as_and_password_as_hq3(String username, String password) {
         // Write code here that turns the phrase above into concrete actions
-//            driver.findElement(By.id("ShopLoginForm_Login_headerItemLogin")).sendKeys("2622299");
-//            driver.findElement(By.id("ShopLoginForm_Password_headerItemLogin")).sendKeys("HQ3-");
 
         driver.findElement(By.id("ShopLoginForm_Login_headerItemLogin")).sendKeys(username);
         driver.findElement(By.id("ShopLoginForm_Password_headerItemLogin")).sendKeys(password);
-
-
 
     }
 
@@ -107,8 +101,7 @@ public class loginsteps extends BaseClass {
     @Then("Close the Browser")
     public void close_the_browser() {
         // Write code here that turns the phrase above into concrete actions
-
-     driver.quit();
+        driver.quit();
     }
 
 }
